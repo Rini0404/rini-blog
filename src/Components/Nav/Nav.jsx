@@ -1,11 +1,36 @@
 import React, { useState } from "react";
 import {Link} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
+import { signOut } from 'firebase/auth';
+import { auth } from '../../firebase';
+import { toast } from "react-toastify";
 
 
-export default function Index() {
+export default function Index({ isAuth, setIsAuth }) {
   const [searchInput, setSearchInput] = useState(true);
   const [mdOptionsToggle, setMdOptionsToggle] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
+  
+  const notify = () => toast("Signed out!");
+
+
+  const navigate = useNavigate();
+
+
+  const signUserOut = () => {
+    signOut(auth)
+      .then(() => {
+        localStorage.clear()
+        setIsAuth(false)
+        navigate("/login")
+        notify()
+      }
+      )
+      .catch(error => {
+        console.log(error);
+      }
+      );
+  }
 
   return (
     <div className="dark:bg-gray-900">
@@ -230,8 +255,10 @@ export default function Index() {
                       />
                     </svg>
                   </button>
+                  
 
-                  <Link to="/login">
+                  {!isAuth ? (
+                    <Link to="/login">
                     <button
                       type="button"
                       className="px-8 py-3 font-semibold rounded-full dark:bg-gray-100 dark:text-gray-800"
@@ -239,6 +266,18 @@ export default function Index() {
                       Login
                     </button>
                   </Link>
+                  ) : (
+                    <button
+                      type="button"
+                      className="px-8 py-3 font-semibold rounded-full dark:bg-gray-100 dark:text-gray-800"
+                      onClick = {signUserOut}
+                  >
+                    Logout
+                  </button>
+                  )}
+
+
+
                 </div>
                 <div className="flex lg:hidden">
                   <button
@@ -446,7 +485,7 @@ export default function Index() {
                   </a>
                 </li>
                 </Link>
-                
+
               </ul>
             </div>
             <div className="h-full flex items-end">
