@@ -182,16 +182,18 @@ export default function Index({ isAuth, setIsAuth }) {
                     </a>
                   </li>
                 </Link>
-                {/* <li>
-                                    <a href="javascript:void(0)" className="dark:text-white text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">
-                                        Lookbook
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" className="dark:text-white text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline">
-                                        Support
-                                    </a>
-                                </li> */}
+
+                <Link to="/posts">
+                <li>
+                  <a
+                    href="javascript:void(0)"
+                    className="dark:text-white text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
+                  >
+                    Posts
+                  </a>
+                </li>
+                </Link>
+
               </ul>
               <div className="md:w-2/12 justify-end flex items-center space-x-4 xl:space-x-8">
                 <div className="hidden lg:flex items-center">
@@ -255,29 +257,25 @@ export default function Index({ isAuth, setIsAuth }) {
                       />
                     </svg>
                   </button>
-                  
 
                   {!isAuth ? (
                     <Link to="/login">
-                    <button
-                      type="button"
-                      className="px-8 py-3 font-semibold rounded-full dark:bg-gray-100 dark:text-gray-800"
-                    >
-                      Login
-                    </button>
-                  </Link>
+                      <button
+                        type="button"
+                        className="px-8 py-3 font-semibold rounded-full dark:bg-gray-100 dark:text-gray-800"
+                      >
+                        Login
+                      </button>
+                    </Link>
                   ) : (
                     <button
                       type="button"
                       className="px-8 py-3 font-semibold rounded-full dark:bg-gray-100 dark:text-gray-800"
-                      onClick = {signUserOut}
-                  >
-                    Logout
-                  </button>
+                      onClick={signUserOut}
+                    >
+                      Logout
+                    </button>
                   )}
-
-
-
                 </div>
                 <div className="flex lg:hidden">
                   <button
@@ -427,65 +425,63 @@ export default function Index({ isAuth, setIsAuth }) {
             </div>
             <div className="mt-6 p-4">
               <ul className="flex flex-col space-y-6">
-
                 <Link to="/">
-                <li>
-                  <a
-                    href="javascript:void(0)"
-                    className="dark:text-white flex items-center justify-between hover:underline text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800"
-                  >
-                    Home
-                    <div>
-                      <svg
-                        className="fill-stroke text-black dark:text-white"
-                        width={12}
-                        height={12}
-                        viewBox="0 0 12 12"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M4.5 3L7.5 6L4.5 9"
-                          stroke="currentColor"
-                          strokeWidth="0.75"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </div>
-                  </a>
-                </li>
-                </Link>
-                
-                <Link to="/create">
-                <li>
-                  <a
-                    href="javascript:void(0)"
-                    className="dark:text-white flex items-center justify-between hover:underline text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800"
-                  >
-                    Create Post
-                    <div>
-                      <svg
-                        className="fill-stroke text-black dark:text-white"
-                        width={12}
-                        height={12}
-                        viewBox="0 0 12 12"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M4.5 3L7.5 6L4.5 9"
-                          stroke="currentColor"
-                          strokeWidth="0.75"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </div>
-                  </a>
-                </li>
+                  <li>
+                    <a
+                      href="javascript:void(0)"
+                      className="dark:text-white flex items-center justify-between hover:underline text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800"
+                    >
+                      Home
+                      <div>
+                        <svg
+                          className="fill-stroke text-black dark:text-white"
+                          width={12}
+                          height={12}
+                          viewBox="0 0 12 12"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M4.5 3L7.5 6L4.5 9"
+                            stroke="currentColor"
+                            strokeWidth="0.75"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </div>
+                    </a>
+                  </li>
                 </Link>
 
+                <Link to="/create">
+                  <li>
+                    <a
+                      href="javascript:void(0)"
+                      className="dark:text-white flex items-center justify-between hover:underline text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800"
+                    >
+                      Create Post
+                      <div>
+                        <svg
+                          className="fill-stroke text-black dark:text-white"
+                          width={12}
+                          height={12}
+                          viewBox="0 0 12 12"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M4.5 3L7.5 6L4.5 9"
+                            stroke="currentColor"
+                            strokeWidth="0.75"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </div>
+                    </a>
+                  </li>
+                </Link>
               </ul>
             </div>
             <div className="h-full flex items-end">
@@ -495,20 +491,16 @@ export default function Index({ isAuth, setIsAuth }) {
                     href="javascript:void(0)"
                     className="dark:text-white text-gray-800 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
                   >
-
-                    
                     <div>
                       <Link to="/login">
-                      <button
-                        type="button"
-                        className="px-8 py-3 font-semibold rounded-full dark:bg-gray-100 dark:text-gray-800"
-                      >
-                        Login
-                      </button>
+                        <button
+                          type="button"
+                          className="px-8 py-3 font-semibold rounded-full dark:bg-gray-100 dark:text-gray-800"
+                        >
+                          Login
+                        </button>
                       </Link>
                     </div>
-
-
                   </a>
                 </li>
                 <li>

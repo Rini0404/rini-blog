@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import { useNavigate } from 'react-router-dom'
-
+import { toast } from "react-toastify";
 
 function CreatePost({ isAuth }) {
   const [title, setTitle] = useState("");
@@ -12,6 +12,8 @@ function CreatePost({ isAuth }) {
 
   const postCollection = collection(db, "posts");
 
+  const notify = () => toast("Please login to create a post!");
+
   const createPost = async (e) => {
     await addDoc(postCollection, {
       title,
@@ -20,6 +22,7 @@ function CreatePost({ isAuth }) {
         name: auth.currentUser.displayName, 
         id: auth.currentUser.uid 
       },
+      createdAt: new Date()
     });
     navigate('/')
   };
@@ -27,6 +30,7 @@ function CreatePost({ isAuth }) {
   useEffect(() => {
     if (!isAuth) {
       navigate('/login')
+      notify()
     }
   }
   , [])
