@@ -22,7 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
-          <Route path="/create" element={<Create />} />
+          <Route path="/create" element={<Create isAuth = {isAuth} />} />
         </Routes>
         <ToastContainer />
       </Router>
