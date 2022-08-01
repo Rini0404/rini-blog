@@ -3,6 +3,8 @@ import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import { BsTrash } from "react-icons/bs";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
+
 
 function Home({ isAuth }) {
   const notify = () => toast("Delete success");
@@ -30,6 +32,8 @@ function Home({ isAuth }) {
       <div className="mx-auto container py-20 px-6 ">
         <div className="grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {postList.map((post) => (
+            <Link to={`/posts/${post.id}`} key={post.id}>
+            <div key={post.id} className="flex flex-col justify-center">
             <div className="rounded">
               <div className="w-full h-64 flex flex-col justify-between items-start bg-blue-300 rounded-lg border border-blue-300 mb-6 py-5 px-4">
                 <div className="flex justify-between items-center">
@@ -90,6 +94,8 @@ function Home({ isAuth }) {
                 </div>
               </div>
             </div>
+            </div>
+            </Link>
           ))}
         </div>
       </div>
