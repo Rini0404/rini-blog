@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 
 function Home({ isAuth }) {
+  
   const notify = () => toast("Delete success");
 
   const [postList, setPostList] = useState([]);
@@ -26,13 +27,22 @@ function Home({ isAuth }) {
     await deleteDoc(postDoc);
     notify();
   };
+  
 
   return (
-    <cards>
+    <div>
       <div className="mx-auto container py-20 px-6 ">
         <div className="grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {postList.map((post) => (
-            <Link to={`/posts/${post.id}`} key={post.id}>
+            <Link 
+              key={post.id}
+              to = {{
+                pathname: `/posts/${post.id}`, 
+                state: { post }
+              }}
+            
+            
+            >
             <div key={post.id} className="flex flex-col justify-center">
             <div className="rounded">
               <div className="w-full h-64 flex flex-col justify-between items-start bg-blue-300 rounded-lg border border-blue-300 mb-6 py-5 px-4">
@@ -99,7 +109,7 @@ function Home({ isAuth }) {
           ))}
         </div>
       </div>
-    </cards>
+    </div>
   );
 }
 
