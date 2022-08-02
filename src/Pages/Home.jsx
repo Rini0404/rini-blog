@@ -35,13 +35,9 @@ function Home({ isAuth }) {
         <div className="grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {postList.map((post) => (
             <Link 
+              // link with the id 
+              to={`/posts/${post.id}`}
               key={post.id}
-              to = {{
-                pathname: `/posts/${post.id}`, 
-                state: { post }
-              }}
-            
-            
             >
             <div key={post.id} className="flex flex-col justify-center">
             <div className="rounded">
