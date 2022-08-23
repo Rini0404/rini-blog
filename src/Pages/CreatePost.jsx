@@ -3,10 +3,15 @@ import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import { useNavigate } from 'react-router-dom'
 import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
+
+
 
 function CreatePost({ isAuth }) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const [description, setDescription] = useState("");
+  const [picture, setPicture] = useState("");
 
   const navigate = useNavigate()
 
@@ -14,10 +19,14 @@ function CreatePost({ isAuth }) {
 
   const notify = () => toast("Please login to create a post!");
 
+  
+
   const createPost = async (e) => {
     await addDoc(postCollection, {
       title,
       body,
+      description,
+      picture,
       author: { 
         name: auth.currentUser.displayName, 
         id: auth.currentUser.uid 
@@ -35,7 +44,7 @@ function CreatePost({ isAuth }) {
   }
   , [])
 
-
+  
 
   return (
     <div className="py-16 px-6 grid justify-items-center">
@@ -49,12 +58,16 @@ function CreatePost({ isAuth }) {
 
         {/* add to middle  */}
         <div className="flex justify-items-center w-full my-4">
+          
+
+
           <fieldset className="text-center w-full space-y-1 dark:text-gray-100">
             <label for="files" className="block text-sm font-medium">
               Attachments
             </label>
             <div className="py-4 flex justify-center">
               <input
+                onChange={(e) => setPicture(e.target.value)}
                 type="file"
                 name="files"
                 id="files"
@@ -62,21 +75,13 @@ function CreatePost({ isAuth }) {
               />
             </div>
           </fieldset>
+
+
+
         </div>
 
         <div className="mt-6 ">
           <div className="items-center -mx-2 md:flex">
-            {/* <div className="w-full mx-2">
-              <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200">
-                Name
-              </label>
-
-              <input
-                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                type="text"
-              />
-            </div> */}
-
             <div className="w-full mx-2 mt-4 md:mt-0">
               <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200">
                 Title
@@ -89,6 +94,21 @@ function CreatePost({ isAuth }) {
               />
             </div>
           </div>
+
+          <div className="items-center -mx-2 md:flex pt-4 ">
+            <div className="w-full mx-2 mt-4 md:mt-0">
+              <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200">
+                Article Description
+              </label>
+
+              <input
+                onChange={(e) => setDescription(e.target.value)}
+                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                type="description"
+              />
+            </div>
+          </div>
+        
 
           <div className="w-full mt-4">
             <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200">

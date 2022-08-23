@@ -13,6 +13,8 @@ import Home from "./Pages/Home.jsx";
 import Login from "./Pages/Login.jsx";
 import Create from "./Pages/CreatePost.jsx";
 import Posts from "./Pages/Posts";
+import Footer from "./Components/Footer/Footer.jsx";
+
 
 function App() {
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
@@ -31,6 +33,7 @@ function App() {
         <Route exact path="/posts/:id" element={<Posts />} />
       </Routes>
       <ToastContainer />
+      <Footer />
     </Router>
   );
 }
